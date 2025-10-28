@@ -35,6 +35,7 @@ use vertex_property_scan::VertexPropertyScanBuilder;
 
 use crate::error::ExecutionResult;
 use crate::evaluator::BoxedEvaluator;
+use crate::executor::intersect::IntersectBuilder;
 use crate::executor::join::{JoinBuilder, JoinCond};
 use crate::executor::limit::LimitBuilder;
 use crate::source::{ExpandSource, VertexPropertySource};
@@ -155,6 +156,19 @@ pub trait Executor {
         Self: Sized,
     {
         LimitBuilder::new(self, limit).into_executor()
+    }
+
+    fn intersect<R>(
+        self,
+        right: R,
+        left_keys: Vec<BoxedEvaluator>,
+        right_keys: Vec<BoxedEvaluator>,
+    ) -> impl Executor
+    where
+        Self: Sized,
+        R: Executor,
+    {
+        IntersectBuilder::new(self, right, left_keys, right_keys).into_executor()
     }
 }
 

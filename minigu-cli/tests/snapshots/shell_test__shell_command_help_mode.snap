@@ -10,7 +10,7 @@ success: true
 exit_code: 0
 ----- stdout -----
 Enter ":help" for usage hints.
-Set output mode
+minigu> Set output mode
 
 Usage: :mode [MODE_TO_CHANGE]
 
@@ -20,5 +20,5 @@ Arguments:
           
           [possible values: sharp, modern, psql, markdown, csv, json]
 
-
+minigu> 
 ----- stderr -----

@@ -10,7 +10,7 @@ success: true
 exit_code: 0
 ----- stdout -----
 Enter ":help" for usage hints.
-Usage hints:
+minigu> Usage hints:
 
   :help     Show usage hints
   :quit     Exit the shell
@@ -20,5 +20,5 @@ Usage hints:
 
 Enter ":help <COMMAND>" for more information about a command.
 
-
+minigu> 
 ----- stderr -----
