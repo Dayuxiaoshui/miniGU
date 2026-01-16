@@ -8,16 +8,16 @@ transaction management.
 
 Stability:
     This API is currently in alpha state. Features may change in future versions.
-    
+
 Feature Status:
     - Graph operations: Implemented
     - Query execution: Implemented
     - Data loading/saving: Implemented
     - Transactions: Not yet implemented (planned)
-    
+
 Supported Python Versions:
     Python 3.7 and above
-    
+
 Examples:
     >>> from minigu import MiniGU
     >>> db = MiniGU()
@@ -68,7 +68,7 @@ from .minigu import (
 
 __all__ = [
     "MiniGU",
-    "AsyncMiniGU", 
+    "AsyncMiniGU",
     "QueryResult",
     "MiniGUError",
     "ConnectionError",

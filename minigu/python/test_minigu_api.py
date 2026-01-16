@@ -31,11 +31,11 @@ import minigu
 class TestMiniGUAPI(unittest.TestCase):
     """
     Test suite for the synchronous MiniGU API.
-    
+
     These tests validate the functionality of the synchronous MiniGU interface,
     including connection management, graph operations, data loading, and query execution.
     """
-    
+
     def setUp(self):
         """Set up test fixtures before each test method."""
         self.db = minigu.MiniGU()
@@ -129,7 +129,7 @@ class TestMiniGUAPI(unittest.TestCase):
         data = [["value1"], ["value2"]]
         metrics = {"parsing_time_ms": 1.0, "planning_time_ms": 2.0, "execution_time_ms": 3.0}
         result = minigu.QueryResult(schema, data, metrics)
-        
+
         self.assertEqual(len(result), 2)
         self.assertEqual(result[0], ["value1"])
         self.assertEqual(result[1], ["value2"])
@@ -142,7 +142,7 @@ class TestMiniGUAPI(unittest.TestCase):
         data = [["row1"], ["row2"], ["row3"]]
         metrics = {}
         result = minigu.QueryResult(schema, data, metrics)
-        
+
         rows = list(result)
         self.assertEqual(len(rows), 3)
         self.assertEqual(rows[0], ["row1"])
@@ -150,13 +150,13 @@ class TestMiniGUAPI(unittest.TestCase):
     def test_transaction_methods_not_implemented(self):
         """Test that transaction methods raise appropriate errors."""
         self.db.create_graph("test_graph_for_transaction")
-        
+
         with self.assertRaises(minigu.TransactionError):
             self.db.begin_transaction()
-        
+
         with self.assertRaises(minigu.TransactionError):
             self.db.commit()
-        
+
         with self.assertRaises(minigu.TransactionError):
             self.db.rollback()
 
@@ -183,11 +183,11 @@ if sys.version_info >= (3, 8):
     class TestAsyncMiniGUAPI(unittest.IsolatedAsyncioTestCase):
         """
         Test suite for the asynchronous MiniGU API.
-        
+
         These tests validate the functionality of the asynchronous MiniGU interface,
         including connection management, graph operations, data loading, and query execution.
         """
-        
+
         def setUp(self):
             """Set up test fixtures before each test method."""
             self.db = minigu.AsyncMiniGU()
@@ -220,7 +220,7 @@ if sys.version_info >= (3, 8):
             # Test with normal name
             result = await self.db.create_graph("test_async_graph")
             self.assertTrue(result)
-            
+
             # Test with injection attempt in name
             result = await self.db.create_graph("test_async_graph'; DROP TABLE users; --")
             # This should fail or be handled properly by the database
@@ -274,13 +274,13 @@ if sys.version_info >= (3, 8):
         async def test_async_transaction_methods_not_implemented(self):
             """Test that async transaction methods raise appropriate errors."""
             await self.db.create_graph("test_async_graph_for_transaction")
-            
+
             with self.assertRaises(minigu.TransactionError):
                 await self.db.begin_transaction()
-            
+
             with self.assertRaises(minigu.TransactionError):
                 await self.db.commit()
-            
+
             with self.assertRaises(minigu.TransactionError):
                 await self.db.rollback()
 

@@ -81,16 +81,16 @@ import minigu
 async def main():
     # 连接数据库
     db = minigu.AsyncMiniGU()
-    
+
     # 创建图
     success = await db.create_graph("my_graph")
     if success:
         print("Graph created successfully")
-    
+
     # 执行查询
     result = await db.execute("MATCH (n) RETURN n LIMIT 10")
     print(result.data)
-    
+
     # 使用异步上下文管理器（推荐）
     async with minigu.AsyncMiniGU() as db:
         await db.create_graph("my_graph")
@@ -222,7 +222,7 @@ fn main() {
 
 #### 构造函数
 ```python
-def __init__(self, db_path: Optional[str] = None, 
+def __init__(self, db_path: Optional[str] = None,
              thread_count: int = 1,
              cache_size: int = 1000,
              enable_logging: bool = False)
